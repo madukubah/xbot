@@ -8,7 +8,7 @@ require 'uri'
 require 'json'
 require 'mysql2' #database
 
-client = Mysql2::Client.new(:host => "localhost", :username => "root", :password =>"Alan!234", :database =>"evoting", :socket => "/var/run/mysqld/mysqld.sock" )
+client = Mysql2::Client.new(:host => "localhost", :username => "root", :password =>"", :database =>"evoting" )
 @@baseUrl = "http://192.168.0.55/"
 @@browser = Watir::Browser.new :chrome
 
