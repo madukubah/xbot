@@ -13,19 +13,19 @@ client = Mysql2::Client.new(:host => "localhost", :username => "root", :password
 @@browser = Watir::Browser.new :chrome
 
 
-@@NIM = "O1A1"
-@@tahun = [ "20" ]
-@@start = 1
+@@NIM = "e1e1"
+@@tahun = [ "16" ]
+@@start = 15
 @@_end = 99
 
-$i = 0
+$i = 15
 
 begin
     @@no = $i.to_s.rjust(3, "0")
-    # puts("Inside the loop i = "+"#{@@nim}" +"#{@@tahun[0]}"+"#{@@no}" )
+    #puts("Inside the loop i = "+"#{@@nim}" +"#{@@tahun[0]}"+"#{@@no}" )
 
-    # nim = "#{@@NIM}" +"#{@@tahun[0]}"+"#{@@no}"
-    nim = "e1e116017"
+    nim = "#{@@NIM}" +"#{@@tahun[0]}"+"#{@@no}"
+    #nim = "e1e116017"
     pass = nim
     puts( nim )
 
@@ -42,24 +42,37 @@ begin
         begin
             text = @@browser.tables( :class => "box" )[1].tbody.trs[1].tds[1].text
             text = text.split(/\n/)
-            token = @@browser.h2( :style => "color:red;font-size:25px" ).text
-            puts( token )
-            puts( text.inspect )
-            puts( text[5] )
-            ukt = text[5]
-            tokenfix = token[7, token.length-1]
-            puts(tokenfix)
-            query = "INSERT INTO `users` (`id`, `nim`, `pass`, `ukt`, `token` ) VALUES ( NULL, " + "'#{nim}', " + "'#{pass}', " + "'#{ukt}'" + ", " + "'#{tokenfix}'" + ")"
-            puts( query )
-            
-
-
-            client.query(query)
+            if @@browser.h2( :style => "color:red;font-size:25px" ).exists?
+                token = @@browser.h2( :style => "color:red;font-size:25px" ).text
+                puts( token )
+                puts( text.inspect )
+                puts( text[5] )
+                ukt = text[5]
+                tokenfix = token[7, token.length-1]
+                puts(tokenfix)
+                query = "INSERT INTO `users` (`id`, `nim`, `pass`, `ukt`, `token` ) VALUES ( NULL, " + "'#{nim}', " + "'#{pass}', " + "'#{ukt}'" + ", " + "'#{tokenfix}'" + ")"
+                puts( query )
+                
+                client.query(query)
+            else
+                #puts( token )
+                #puts( text.inspect )
+                puts( text[5] )
+                ukt = text[5]
+                #tokenfix = ""
+                #puts(tokenfix)
+                #query = "INSERT INTO `users` (`id`, `nim`, `pass`, `ukt`, `token` ) VALUES ( NULL, " + "'#{nim}', " + "'#{pass}', " + "'#{ukt}'" + ", " + "'#{tokenfix}'" + ")"
+                query = "INSERT INTO `users` (`id`, `nim`, `pass`, `ukt`) VALUES ( NULL, " + "'#{nim}', " + "'#{pass}', " + "'#{ukt}'" + ")"
+                puts( query )
+                    
+                client.query(query)
+            end    
         rescue
             ap "failed to save data"
+            #token = @@browser.h2( :style => "color:red;font-size:25px" ).text
         end
     end
-    sleep(300)
+    sleep(2)
 
 end until $i > @@_end
 
