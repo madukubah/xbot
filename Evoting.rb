@@ -24,8 +24,8 @@ begin
     @@no = $i.to_s.rjust(3, "0")
     # puts("Inside the loop i = "+"#{@@nim}" +"#{@@tahun[0]}"+"#{@@no}" )
 
-    # nim = "#{@@NIM}" +"#{@@tahun[0]}"+"#{@@no}"
-    nim = "e1e116017"
+    nim = "#{@@NIM}" +"#{@@tahun[0]}"+"#{@@no}"
+    # nim = "e1e116017"
     pass = nim
     puts( nim )
 
@@ -42,24 +42,25 @@ begin
         begin
             text = @@browser.tables( :class => "box" )[1].tbody.trs[1].tds[1].text
             text = text.split(/\n/)
-            token = @@browser.h2( :style => "color:red;font-size:25px" ).text
-            puts( token )
-            puts( text.inspect )
-            puts( text[5] )
-            ukt = text[5]
-            tokenfix = token[7, token.length-1]
+            token = ""
+            tokenfix = ""
+            if @@browser.h2( :style => "color:red;font-size:25px" ).exists?
+                token = @@browser.h2( :style => "color:red;font-size:25px" ).text
+                puts( token )
+                puts( text.inspect )
+                puts( text[5] )
+                ukt = text[5]
+                tokenfix = token[7, token.length-1]
+            end
             puts(tokenfix)
             query = "INSERT INTO `users` (`id`, `nim`, `pass`, `ukt`, `token` ) VALUES ( NULL, " + "'#{nim}', " + "'#{pass}', " + "'#{ukt}'" + ", " + "'#{tokenfix}'" + ")"
             puts( query )
-            
-
-
             client.query(query)
         rescue
             ap "failed to save data"
         end
     end
-    sleep(300)
+    sleep(2)
 
 end until $i > @@_end
 
