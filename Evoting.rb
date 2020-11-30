@@ -8,18 +8,16 @@ require 'uri'
 require 'json'
 require 'mysql2' #database
 
-client = Mysql2::Client.new(:host => "localhost", :username => "root", :password =>"", :database =>"evoting" )
+client = Mysql2::Client.new(:host => "localhost", :username => "root", :password =>"Alan!234", :database =>"evoting", :socket => "/var/run/mysqld/mysqld.sock" )
 @@baseUrl = "http://192.168.0.55/"
 @@browser = Watir::Browser.new :chrome
 
-
 @@NIM = [ "E1E1", "A1E1" ]
 @@tahun = [ "19" ]
-@@_end = 99
+@@_end = 2
 
 @@ii = 0
 begin
-
     $i = 1
     begin
         @@no = $i.to_s.rjust(3, "0")
@@ -27,7 +25,7 @@ begin
         nim = "#{@@NIM[@@ii]}" +"#{@@tahun[0]}"+"#{@@no}"
         pass = nim
         puts( nim )
-    
+        
         @@browser.goto @@baseUrl + "/index.php?exec=login"
         @@browser.text_field(:name => "NIP").set nim
         @@browser.text_field(:name => "password").set pass
