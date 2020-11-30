@@ -53,7 +53,7 @@ class EvoBot
                     @browser.link(:href => "ademik.php?logout=1" ).click
                 end
             rescue
-                ap "Bot id : "+ "#{@id}" + " | " + "failed to save data"
+                ap "Bot id : "+ "#{@id}" + " | " + "failed to save data" + "#{nim}" 
             end 
             
             count += 1
@@ -72,7 +72,7 @@ puts( table.length )
 bots = []
 i = 0
 start = 0
-inc = 25
+inc = 500
 begin
     data = table[start .. ( start + inc ) ]
     bots.push(
@@ -89,15 +89,6 @@ begin
     i += 1
     start = start + inc
 end until start > table.length
-# end until i > 2
-
-# puts( bots[0].get_id(  ) )
-# puts( bots[0].get_data(  ) )
-
-# puts( bots[1].get_id(  ) )
-# puts( bots[1].get_data(  ) )
-
-# puts( bots[1] === bots[0] )
 
 bots.each do |bot|
     puts( bot.get_id(  ) )
@@ -106,6 +97,5 @@ bots.each do |bot|
     Thread.new{
         bot.do_scanning(  )
     }
-
 end
 sleep(10000)
