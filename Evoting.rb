@@ -10,21 +10,12 @@ require 'mysql2' #database
 
 require 'csv'
 
-table = CSV.read("DPS PERTANIAN.csv")
-puts( table.length )
-
-sleep(2000)
-
-
-
-
 client = Mysql2::Client.new(:host => "localhost", :username => "root", :password =>"", :database =>"evoting" )
 @@baseUrl = "http://192.168.0.55/"
 @@browser = Watir::Browser.new :chrome
 
-
-@@NIM = [ "E1A1", "E1B1", "E1C1", "E1D1", "E1E1", "E1F1", "E1G1" ]
-@@tahun = [ "20" ]
+@@NIM = ['O1A1','O1B1','F1F1']
+@@tahun = [ "19" ]
 @@_end = 200
 
 @@ii = 0
