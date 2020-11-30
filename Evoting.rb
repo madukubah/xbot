@@ -13,9 +13,9 @@ client = Mysql2::Client.new(:host => "localhost", :username => "root", :password
 @@browser = Watir::Browser.new :chrome
 
 
-@@NIM = [ "E1E1", "A1E1" ]
-@@tahun = [ "19" ]
-@@_end = 99
+@@NIM = [ "K1A1"]
+@@tahun = [ "20" ]
+@@_end = 150
 
 @@ii = 0
 begin
