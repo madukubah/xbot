@@ -15,6 +15,15 @@ client = Mysql2::Client.new(:host => "localhost", :username => "root", :password
 @@NIM = [ "E1E1", "A1E1" ]
 @@tahun = [ "19" ]
 @@_end = 2
+require 'csv'
+
+client = Mysql2::Client.new(:host => "localhost", :username => "root", :password =>"", :database =>"evoting" )
+@@baseUrl = "http://192.168.0.55/"
+@@browser = Watir::Browser.new :chrome
+
+@@NIM = ['O1A1','O1B1','F1F1']
+@@tahun = [ "19" ]
+@@_end = 200
 
 @@ii = 0
 begin
