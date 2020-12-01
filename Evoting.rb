@@ -8,13 +8,14 @@ require 'uri'
 require 'json'
 require 'mysql2' #database
 
+require 'csv'
+
 client = Mysql2::Client.new(:host => "localhost", :username => "root", :password =>"", :database =>"evoting" )
 @@baseUrl = "http://192.168.0.55/"
 @@browser = Watir::Browser.new :chrome
 
-
-@@NIM = ['P3A1','P3A2','P3B1','P3C1','P3D1','P3E1']
-@@tahun = [ "18"]
+@@NIM = ['O1A1','O1B1','F1F1']
+@@tahun = [ "19" ]
 @@_end = 200
 
 @@ii = 0
