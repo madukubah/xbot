@@ -50,7 +50,7 @@ begin
                     puts( token )
                     puts( text.inspect )
                     puts( text[5] )
-                    ukt = text[5]
+                    ukt = texxt[5]
                     tokenfix = token[7, token.length-1]
                     puts(tokenfix)
                     query = "INSERT INTO `users` (`id`, `nim`, `pass`, `ukt`, `token` ) VALUES ( NULL, " + "'#{nim}', " + "'#{pass}', " + "'#{ukt}'" + ", " + "'#{tokenfix}'" + ")"
