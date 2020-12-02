@@ -22,7 +22,6 @@ class EvoBot
         @baseUrl = "http://192.168.0.55/"
         puts( "Bot id : "+ "#{@id}" )
 
-
     end
     def get_id(  )
         return @id
@@ -66,13 +65,13 @@ end
 # client = Mysql2::Client.new(:host => "localhost", :username => "root", :password =>"", :database =>"evoting" )
 # @baseUrl = "http://192.168.0.55/"
 
-table = CSV.read("DPS Vokasi.csv")
+table = CSV.read("DPS MIPA.csv")
 puts( table.length )
 
 bots = []
 i = 0
 start = 0
-inc = 150
+inc = 200
 begin
     data = table[start .. ( start + inc ) ]
     bots.push(
