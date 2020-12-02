@@ -20,8 +20,8 @@ class EvoBot
         @data = params.fetch(:data, [] ) 
         @id = params.fetch(:id, 0 ) 
         @baseUrlSiakad = "http://192.168.0.55/"
-        @baseUrlEvoting = "http://192.168.0.153/"
-        # @baseUrlEvoting = "http://localhost/evoting/index.php"
+        # @baseUrlEvoting = "http://192.168.0.153/"
+        @baseUrlEvoting = "http://localhost/evoting"
         puts( "Bot id : "+ "#{@id}" )
 
     end
