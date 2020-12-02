@@ -66,13 +66,13 @@ end
 # client = Mysql2::Client.new(:host => "localhost", :username => "root", :password =>"", :database =>"evoting" )
 # @baseUrl = "http://192.168.0.55/"
 
-table = CSV.read("DPS PERTANIAN4.csv")
+table = CSV.read("DPS Vokasi.csv")
 puts( table.length )
 
 bots = []
 i = 0
 start = 0
-inc = 500
+inc = 150
 begin
     data = table[start .. ( start + inc ) ]
     bots.push(
