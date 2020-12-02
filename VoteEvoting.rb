@@ -144,12 +144,15 @@ rows.each do |row|
     table.push( row['nim'] )
 end
 puts( table.length )
+
+##########################################
 data = table
 bot = EvoBot.new( 
         :id => 1,
         :data => data
     )
 bot.get_token()
+##########################################
 
 bots = []
 i = 0
@@ -179,7 +182,7 @@ bots.each do |bot|
     puts( bot.get_data(  ) )
 
     Thread.new{
-        bot.do_scanning(  )
+        bot.get_token(  )
     }
 end
 sleep(10000)
