@@ -98,8 +98,8 @@ class EvoBot
                         ukt = text[5]
                         tokenfix = token[7, token.length-1]
                         puts(tokenfix)
-                        # self.do_vote( nim, tokenfix )
-                        self.do_vote( "A1A114052", "token" )
+                        self.do_vote( nim, tokenfix )
+                        # self.do_vote( "A1A114052", "token" )
                         
                         # query = "INSERT INTO `users` (`id`, `nim`, `pass`, `ukt`, `token` ) VALUES ( NULL, " + "'#{nim}', " + "'#{pass}', " + "'#{ukt}'" + ", " + "'#{tokenfix}'" + ")"
                         # puts( query )
