@@ -40,7 +40,7 @@ CREATE TABLE `users2` (
 -- Dumping data for table `users2`
 --
 
-INSERT INTO `users2` (`token`, `nim`, `pass`, `ukt`, `id`) VALUES
+INSERT INTO `users2` (`id`, `nim`, `pass`, `ukt`, `token`) VALUES
 (1824, 'S1B120076', 'S1B120076', NULL, NULL),
 (1786, 'S1B120060', 'S1B120060', NULL, NULL),
 (1979, 'S1B119150', 'S1B119150', NULL, NULL),
@@ -1182,7 +1182,7 @@ INSERT INTO `users2` (`token`, `nim`, `pass`, `ukt`, `id`) VALUES
 (389, 'C1D319034', 'C1D319034', NULL, NULL),
 (386, 'C1D319033', 'C1D319033', NULL, NULL),
 (384, 'C1D319032', 'C1D319032', NULL, NULL);
-INSERT INTO `users2` (`token`, `nim`, `pass`, `ukt`, `id`) VALUES
+INSERT INTO `users2` (`id`, `nim`, `pass`, `ukt`, `token`) VALUES
 (381, 'C1D319031', 'C1D319031', NULL, NULL),
 (379, 'C1D319030', 'C1D319030', NULL, NULL),
 (373, 'C1D319027', 'C1D319027', NULL, NULL),

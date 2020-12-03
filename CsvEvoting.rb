@@ -16,12 +16,12 @@ class EvoBot
     @browser     
     @client
     def initialize( params = {} )
-        @client = Mysql2::Client.new(:host => "localhost", :username => "root", :password =>"", :database =>"evoting" )
+        # @client = Mysql2::Client.new(:host => "localhost", :username => "root", :password =>"", :database =>"evoting" )
+        @client = Mysql2::Client.new(:host => "localhost", :username => "root", :password =>"Alan!234", :database =>"evoting", :socket => "/var/run/mysqld/mysqld.sock" )
         @data = params.fetch(:data, [] ) 
         @id = params.fetch(:id, 0 ) 
         @baseUrl = "http://192.168.0.55/"
         puts( "Bot id : "+ "#{@id}" )
-
 
     end
     def get_id(  )
@@ -32,15 +32,16 @@ class EvoBot
     end
     def do_scanning(  )
         puts( "Bot id : "+ "#{@id}" + " do scanning" )
-        count = 0
+        count = 50
         @browser = Watir::Browser.new :chrome
+        @data = @data[50 .. @data.length ]
         @data.each do |row|
             puts( "Bot id : "+ "#{@id}" + " | target : " + row[0] + " | index " +  "#{count}" )
             nim = row[0]
             pass = row[0]
             @browser.goto @baseUrl + "/index.php?exec=login"
             @browser.text_field(:name => "NIP").set nim
-            @browser.text_field(:name => "password").set pass
+            @browser.text_field(:name => "password").set ""
             @browser.input(:type => "submit" ).click 
         
             sleep(1)   
@@ -66,13 +67,13 @@ end
 # client = Mysql2::Client.new(:host => "localhost", :username => "root", :password =>"", :database =>"evoting" )
 # @baseUrl = "http://192.168.0.55/"
 
-table = CSV.read("DPS MIPA.csv")
+table = CSV.read("DPS Fisip.csv")
 puts( table.length )
 
 bots = []
 i = 0
 start = 0
-inc = 200
+inc = 1200
 begin
     data = table[start .. ( start + inc ) ]
     bots.push(
